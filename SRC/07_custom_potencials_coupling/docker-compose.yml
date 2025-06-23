@@ -1,0 +1,31 @@
+#version: "3.8"
+
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: potencials_coupling
+    volumes:
+      - ./:/workspace
+      - ./output_local:/workspace/output
+      - volumen_lanimfe:/data_output
+    working_dir: /workspace
+    environment:
+      - SIGMA
+      - Z
+      - KBT
+      - PHI
+      - M
+      - N_STAGES
+      - MAX_ITER
+      - CHI_LIST_STR
+      - FOLDER_NAME
+    entrypoint: ["bash", "./entrypoint.sh"]
+
+volumes:
+  volumen_lanimfe:
+
+#$env:SIGMA="1.0"; $env:Z="-3.0"; $env:KBT="1.0"; $env:PHI="0.1"; $env:M="2048"; $env:N_STAGES="5"; $env:MAX_ITER="300"; $env:CHI_LIST_STR="1.0"; $env:FOLDER_NAME="nuevo_hola"; docker compose up --build --force-recreate
+#$env:SIGMA="1.0"; $env:Z="-10"; $env:KBT="1.0"; $env:PHI="0.1"; $env:M="1024"; $env:N_STAGES="1"; $env:MAX_ITER="100"; $env:CHI_LIST_STR="1.0"; $env:FOLDER_NAME="phi1"; docker compose up --build --force-recreate
+#$env:SIGMA="1.0"; $env:Z="-10"; $env:KBT="1.0"; $env:PHI="0.1"; $env:M="2048"; $env:N_STAGES="4"; $env:MAX_ITER="400"; $env:CHI_LIST_STR="0.1,0.5,1.0"; $env:FOLDER_NAME="phi_0_1_Z_10"; docker compose up --build --force-recreate

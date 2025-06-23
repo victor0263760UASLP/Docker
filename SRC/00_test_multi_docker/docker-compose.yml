@@ -1,0 +1,21 @@
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: multi_test
+    volumes:
+      - ./:/workspace
+      - ./output_local:/workspace/output
+      - volumen_lanimfe:/data_output
+    working_dir: /workspace
+    environment:
+      - PHI=${PHI}
+      - KBT=${KBT}
+      - FOLDER_NAME=${FOLDER_NAME}
+    entrypoint: ["bash", "./entrypoint.sh"]
+
+volumes:
+  volumen_lanimfe:
+#docker-compose down --volumes
+#docker system prune -a --volumes -f

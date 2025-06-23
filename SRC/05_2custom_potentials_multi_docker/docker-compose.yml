@@ -1,0 +1,28 @@
+#version: "3.8"
+
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: Rampa2
+    volumes:
+      - ./:/workspace
+      - ./output_local:/workspace/output
+      - volumen_lanimfe:/data_output
+    working_dir: /workspace
+    environment:
+      - SIGMA
+      - Z
+      - KBT
+      - PHI
+      - M
+      - N_STAGES
+      - MAX_ITER
+      - CHI_LIST
+      - FOLDER_NAME
+    entrypoint: ["bash", "./entrypoint.sh"]
+
+volumes:
+  volumen_lanimfe:
+

@@ -1,0 +1,32 @@
+FROM julia:1.11
+
+
+RUN apt-get update && apt-get install -y \
+    bash curl wget git build-essential libcurl4-openssl-dev ca-certificates dos2unix \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+# Clonar el repositorio de Julia
+RUN git clone https://github.com/IlianPihlajamaa/OrnsteinZernike.jl
+
+# Instalar paquetes de Julia necesarios
+RUN julia -e 'using Pkg; Pkg.add(PackageSpec(path="OrnsteinZernike.jl")); Pkg.instantiate()'
+RUN julia -e 'using Pkg; Pkg.add("JSON"); Pkg.add("DelimitedFiles")'
+
+COPY OZE5.jl /workspace/OZE5.jl
+COPY entrypoint.sh /workspace/entrypoint.sh
+
+
+RUN dos2unix /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
+
+# entrypoint
+ENTRYPOINT ["bash", "/workspace/entrypoint.sh"]
+
+# Corregir formato fin de línea y dar permiso de ejecución
+#RUN sed -i 's/\r//' /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
+
+
+#windows$env:PHI="0.23"; $env:KBT="2.0"; $env:FOLDER_NAME="nuevop"; docker compose up --build --force-recreate
+#macPHI=0.23 KBT=2.0 FOLDER_NAME=martes docker compose up --build --force-recreate
+#ubuntu export PHI=0.23; export KBT=2.0; export FOLDER_NAME=nuevop; docker compose up --build --force-recreate

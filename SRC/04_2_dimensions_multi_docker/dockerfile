@@ -1,0 +1,25 @@
+FROM julia:1.11
+
+# Instalar dependencias del sistema y dos2unix
+RUN apt-get update && apt-get install -y \
+    bash curl wget git build-essential libcurl4-openssl-dev ca-certificates dos2unix \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+# Clonar el repositorio de Julia
+RUN git clone https://github.com/IlianPihlajamaa/OrnsteinZernike.jl
+
+# Instalar paquetes de Julia necesarios
+RUN julia -e 'using Pkg; Pkg.add(PackageSpec(path="OrnsteinZernike.jl")); Pkg.instantiate()'
+RUN julia -e 'using Pkg; Pkg.add("JSON"); Pkg.add("DelimitedFiles")'
+
+# Copiar archivos locales (script y entrypoint)
+COPY density.jl /workspace/power_dockerduo.jl
+COPY entrypoint.sh /workspace/entrypoint.sh
+
+# formato UNIX y permisos de ejecución
+RUN dos2unix /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
+
+# Ejecutar entrypoint
+ENTRYPOINT ["bash", "/workspace/entrypoint.sh"]

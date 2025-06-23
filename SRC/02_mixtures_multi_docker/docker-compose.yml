@@ -1,0 +1,23 @@
+
+
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mixtures
+    volumes:
+      - ./:/workspace
+      - ./output_local:/workspace/output
+      - volumen_lanimfe:/data_output
+    working_dir: /workspace
+    environment:
+      - D1=${D1}
+      - D2=${D2}
+      - RHO_TOTAL=${RHO_TOTAL}
+      - KBT=${KBT}
+      - FOLDER_NAME=${FOLDER_NAME}
+    entrypoint: ["bash", "./entrypoint.sh"]
+
+volumes:
+  volumen_lanimfe:

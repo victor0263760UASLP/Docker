@@ -1,0 +1,20 @@
+#version: '3.9'
+
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oz_loc_try
+    environment:
+      - PARAM=${PARAM:-0.1}
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    entrypoint: ["./entrypoint.sh"]
+
+ #$env:PARAM="0.3"; docker-compose up --build
+ #docker-compose up --build
+ 
+ #docker --version
+ #docker-compose --version

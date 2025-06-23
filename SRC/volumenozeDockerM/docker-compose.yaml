@@ -1,0 +1,24 @@
+#version: '3.9'
+
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: crear_volumen
+    environment:
+      - PARAM=${PARAM:-0.1}
+    volumes:
+      - volumen_oz:/workspace/carpeta #carga el volumen en docker
+    working_dir: /workspace
+    entrypoint: ["./entrypoint.sh"]
+
+volumes:
+  volumen_oz:
+#$env:PARAM="0.3"; docker-compose up --build
+#docker-compose up --build
+#docker volume ls
+#docker volume inspect oz_output
+#docker exec -it oz_sim bash
+
+
