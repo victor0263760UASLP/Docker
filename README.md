@@ -11,6 +11,6 @@ Todos los codigos de se encuentran bajo protección de derechos de autor y solo 
 
 Dentro de las consideraciones que te pueden ayudar son : cuando son muchas iteraciones el sistema puede encontrar más rapido convergencias, en el caso de la teoria MCT,algunos parametros son complicados para converger, por lo que tienes que detenerte un poco para ver o imaginarte bajo que parametros puede existir convergencia y en algunos casos puedes hacer algunas operaciones básicas en tu libreta para llevarte un poco de menor tiempo realizando las  combinaciones donde exista convergencia.
 
-Sin más por el momento adelante te va ayudar mucho, te deseo suerte, todo va estar documentado, recuerda que en la tesis encontraras una descripción de docker y comandos basicos, pero si  tienes alguna duda no dudes en preguntarnos.
+Sin más por el momento adelante te va ayudar mucho, te deseo suerte, todo va estar documentado, recuerda que en la tesis encontraras una descripción de docker y comandos básicos, pero si  tienes alguna duda no dudes en preguntarnos.
 
 Nos vemos hasta luego gracias,suerte en tu camino.
