@@ -19,4 +19,4 @@ Sin más por el momento adelante te va ayudar mucho, te deseo suerte, todo va es
 
 Nos vemos hasta luego gracias,suerte en tu camino.
 
-O espera se me olvidaba decirte git hub no me permite subir archivos. env asi que a los archivos .env los subi como archivos txt.env, solo debes cambiarlos con .env, ahora si nos vemos.
+O espera se me olvidaba decirte  algo git hub no me permite subir archivos. env asi que a los archivos .env los subi como archivos txt.env, solo debes cambiarlos con .env, ahora si nos vemos.
