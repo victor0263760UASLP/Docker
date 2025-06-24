@@ -6,3 +6,4 @@ El siguiente repositorio es necesario a la hora de administrar y generar datos e
 En este caso en este repositorio se encuentran varios archivos que encuentran con su archivo.jl,docker compose,archivo.env,entrypoint así como su Dockerfile, necesarios para generar volumenes y carpetas que contienen los archivos generados en .dat de  g(r) y S(K), así como algunos se encuentran automatizados para generar graficas solo añadiendo en la terminal las variables que necesitas.
 
 Estos archivos se encuentran disponibles para realizar las modificaciones pertinentes deacuerdo a las necesidades del estudiante o investigador, agregar variables, mas potenciales de interacción, mas cerraduras etc.
+Todos los codigos de se encuentran bajo protección de derechos de autor y solo se puede hacer uso bajo la administración del autor de la tesis o de los asesores el Dr.Ricardo Peredo Ortiz y el Dr.Magdaleno Medina Noyola.
