@@ -1,7 +1,7 @@
 
  # Ornstein-Zernike para Esferas Duras con Docker Compose
 
-Este proyecto resuelve la ecuación de Ornstein-Zernike (OZ) con cerradura de Percus-Yevick para un sistema de esferas duras en 3D, usando un contenedor Docker con Julia.
+Este proyecto resuelve la ecuación de Ornstein-Zernike (OZ) con cerradura de Percus-Yevick para un sistema de esferas duras en 3D, usando un contenedor Docker con Julia, pero no genera un volumen en la aplicación de docker Desktop,solo hace una carpeta con los archivos  localmente y para cambiarle el nombre a la carpeta debes ingresar  al entrypoint, donde dice particulas1 cambiarlo.
 
 ---
 
