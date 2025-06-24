@@ -57,7 +57,7 @@ Este proyecto resuelve la ecuación de Ornstein-Zernike (OZ) con cerradura de Pe
 
 ## Cómo ejecutar
 
-### 1. Clonar el repositorio (si aplica)
+### 1. Clonar el repositorio 
 
 ```bash
 git clone <url-del-repo>
