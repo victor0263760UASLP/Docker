@@ -105,7 +105,7 @@ Este proyecto es solo para fines educativos o de investigación. Adapta los arch
 
 ---
 
-## Código fuente incluido
+## Código fuente
 
 ### `OZE2_HS.jl`
 
