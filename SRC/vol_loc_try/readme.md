@@ -60,8 +60,8 @@ Este proyecto resuelve la ecuación de Ornstein-Zernike (OZ) con cerradura de Pe
 ### 1. Clonar el repositorio 
 
 ```bash
-git clone <url-del-repo>
-cd <nombre-del-repo>
+git clone <https://github.com/victor0263760UASLP/Docker/tree/main>
+cd <Docker>
 ```
 
 ### 2. Establecer el valor de `phi`
