@@ -11,7 +11,7 @@ En todas las demas carpetas el codigo se encuentra mejorado para que desde la te
 
 Estos archivos se encuentran disponibles para realizar las modificaciones pertinentes de acuerdo a las necesidades del estudiante o investigador, agregar variables, más potenciales de interacción, más cerraduras etc.
 
-Todos los codigos de se encuentran bajo protección de derechos de autor y solo se puede hacer uso bajo la administración del autor de la tesis o de los asesores el Dr.Ricardo Peredo Ortiz y el Dr.Magdaleno Medina Noyola.
+Todos los codigos del repositorio se encuentran bajo protección de derechos de autor y solo se puede hacer uso bajo la administración del autor de la tesis o de los asesores el Dr.Ricardo Peredo Ortiz y el Dr.Magdaleno Medina Noyola.
 
 Dentro de las consideraciones que te pueden ayudar son : cuando son muchas iteraciones el sistema puede encontrar más rapido convergencias, en el caso de la teoria MCT,algunos parametros son complicados para converger, por lo que tienes que detenerte un poco para ver o imaginarte bajo que parametros puede existir convergencia y en algunos casos puedes hacer algunas operaciones básicas en tu libreta para llevarte un poco de menor tiempo realizando las  combinaciones donde exista convergencia.
 
