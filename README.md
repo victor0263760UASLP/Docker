@@ -1,5 +1,5 @@
 # Docker
-Este manual forma parte de una tesis de licenciatura(Ingenieria en Nanotecnologia y Energias Renovables) del estudiante Rivera Juarez Victor Guadalupe de la UASLP,El proposito general es el aprendizaje de las herramientas fundamentales de docker.
+Este manual forma parte de una tesis de licenciatura(Ingenieria en Nanotecnologia y Energias Renovables) del estudiante Rivera Juárez Victor Guadalupe de la UASLP,El proposito general es el aprendizaje de las herramientas fundamentales de docker.
 
 El siguiente repositorio es necesario a la hora de administrar y generar datos en teoria coloidal, dentro de las propiedades estáticas y dinámicas.
 
