@@ -5,6 +5,10 @@ El siguiente repositorio es necesario a la hora de administrar y generar datos e
 
 En este caso en este repositorio se encuentran varios archivos que encuentran con su archivo.jl,docker compose,archivo.env,entrypoint así como su Dockerfile, necesarios para generar volumenes y carpetas que contienen los archivos generados en .dat de  g(r) y S(K),en este caso usando la ecuación de ornstein Zernike, pero se pueden agregar más librerias en estado y fuera de equilibrio , así como algunos se encuentran automatizados para generar graficas solo añadiendo en la terminal las variables que necesitas.
 
+Existen dos carpetas  el volumenozeDockerM , estos archivos son diferentes por que son como el espoiler de lo que fuimos desarrollando , en esto deben ingresar y cambiar el nombre de la carpeta manualmente en el entrypoint y te genera un volumen en docker desktop  con la carpeta  y archivos .dat y en la carpeta local try_local no se genera volumen en docker desktop solo localmente.
+
+En todas las demas carpetas el codigo se encuentra mejorado para que desde la terminal puedas agregar el nombre de la carpeta, cambiar el valor de muchas variables y hacer graficas de g(r) y S(k), asi como de densidades de rampa , MCT etc.
+
 Estos archivos se encuentran disponibles para realizar las modificaciones pertinentes de acuerdo a las necesidades del estudiante o investigador, agregar variables, más potenciales de interacción, más cerraduras etc.
 
 Todos los codigos de se encuentran bajo protección de derechos de autor y solo se puede hacer uso bajo la administración del autor de la tesis o de los asesores el Dr.Ricardo Peredo Ortiz y el Dr.Magdaleno Medina Noyola.
