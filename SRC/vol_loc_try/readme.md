@@ -1,153 +1,283 @@
 
- 
- 
-### Ecuación Ornstein-Zernike para Esferas duras
+ # Ornstein-Zernike para Esferas Duras con Docker Compose
 
-## OZE_HS.jl:  resuelve la ecuación Ornstein-Zernike.
+Este proyecto resuelve la ecuación de Ornstein-Zernike (OZ) con cerradura de Percus-Yevick para un sistema de esferas duras en 3D, usando un contenedor Docker con Julia.
 
-Este proyecto contiene un script en Julia que resuelve la ecuación Ornstein-Zernike usando la teoría de esferas duras. La solución se presenta en formato JSON para su posterior análisis. Además, el proyecto incluye un Dockerfile para crear un contenedor que ejecute el script en un entorno controlado.
+---
+
+## Estructura del proyecto
+
+```
+├── Dockerfile              # Define la imagen de Julia con dependencias
+├── entrypoint.sh           # Script de entrada que ejecuta el cálculo
+├── OZE2_HS.jl              # Script Julia que resuelve la ecuación de OZ
+├── docker-compose.yml      # Orquestación con Docker Compose
+└── workspace/
+    └── particulas1/        # (Se crea automáticamente) Almacena resultados
+```
+
+---
+
+## Archivos explicados
+
+### `OZE2_HS.jl`
+- Script en Julia que:
+  - Define el sistema de esferas duras.
+  - Resuelve la ecuación de Ornstein-Zernike.
+  - Imprime resultados en formato JSON.
+
+### `entrypoint.sh`
+- Script bash que:
+  - Crea un directorio de salida (`/workspace/particulas1`).
+  - Ejecuta `OZE2_HS.jl` pasando un valor de `phi`.
+  - Guarda los resultados en `result_$PARAM.dat`.
+
+### `Dockerfile`
+- Usa `julia:1.10` como imagen base.
+- Instala:
+  - Dependencias del sistema.
+  - El paquete `OrnsteinZernike.jl` desde GitHub.
+  - `JSON.jl`.
+- Copia los scripts y configura el entorno.
+
+### `docker-compose.yml`
+- Orquesta todo con Docker Compose.
+- Permite pasar un valor de `phi` a través de una variable de entorno `PARAM`.
+- Monta el volumen local en `/workspace`.
+
+---
+
+## Requisitos
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+- En Windows, asegúrate de tener [Docker Desktop](https://www.docker.com/products/docker-desktop/) funcionando correctamente.
+
+---
+
+## Cómo ejecutar
+
+### 1. Clonar el repositorio (si aplica)
+
+```bash
+git clone <url-del-repo>
+cd <nombre-del-repo>
+```
+
+### 2. Establecer el valor de `phi`
+
+En Windows PowerShell:
+
+```powershell
+$env:PARAM="0.3"; docker-compose up --build
+```
+
+En Linux/Mac:
+
+```bash
+PARAM=0.3 docker-compose up --build
+```
+
+> Si no se define `PARAM`, se usará el valor por defecto `0.1`.
+
+---
+
+## Salida
+
+- Los resultados se guardan en el directorio:  
+  `./workspace/particulas1/result_<phi>.dat`
+
+- También puedes verlos directamente en consola en formato JSON.
+
+---
+
+## Notas
+
+- El contenedor se detiene una vez completado el cálculo.
+- Puedes editar `OZE2_HS.jl` para agregar más análisis o salida gráfica si lo deseas.
+
+---
+
+## Licencia
+
+Este proyecto es solo para fines educativos o de investigación. Adapta los archivos según tus necesidades.
 
 
+---
 
-## Usando las siguientes funciones
+## Código fuente incluido
 
-using OrnsteinZernike  // ecuacion de Ornstein Zernike
-using JSON           // JSON para la forma el formato
+### `OZE2_HS.jl`
+
+```julia
+using OrnsteinZernike  # Carga la biblioteca para las soluciones de Ornstein-Zernike
+using JSON              # Carga para usar formato  JSON
 
 function main(args...)
+    try
+        # user inputs
+        phi_str = args[1][1]
+        phi = parse(Float64, phi_str)
 
+        # Sistema de esferas duras
+        dims = 3
+        kBT = 1.0
+        ρ = (6/pi) * phi
+        potential = HardSpheres(1.0)
+        system = SimpleLiquid(dims, ρ, kBT, potential)
 
-Se obtiene el valor de la fracción volumétrica phi (especificado por el usuario) a través de los argumentos de línea de comando.
-phi es un parámetro que representa la fracción volumétrica de partículas en el sistema.
+        # Closure es la cerradura para la ecuación de Ornstein-Zernike
+        closure = PercusYevick()
 
-    # user inputs
-    phi_str = args[1][1] // se necesita de phi para los argumentos de la funcion
-    #println(phi_str)
-    phi = parse(Float64, phi_str)
+        # Resuelve el sistema utilizando la ecuación de Ornstein-Zernike
+        sol = @time solve(system, closure)
 
-Se establece un sistema de esferas duras (HardSpheres) con una densidad dada por ρ = (6/π) * φ y una temperatura de la red de kBT = 1.0.
-El sistema se define con 3 dimensiones espaciales.
+        # Los parámetros dependientes de phi
+        params = Dict("phi" => phi)  
+        system = Dict("ID" => "HS", "params" => params)
 
-# systema para esferas duras
-    dims = 3 // numero de dimensiones
-    kBT = 1.0
-    ρ = (6/pi)*phi
-    potential = HardSpheres(1.0)  # Hard sphere potential (diameter 1.0)
-    system = SimpleLiquid(dims, ρ, kBT, potential)
+        # Procesa y guarda los resultados
+        data = Dict("system_solution" => sol)
 
-    Se utiliza el cierre de Percus-Yevick (PercusYevick) para resolver la ecuación Ornstein-Zernike, que es un método común en la teoría de líquidos.
-    Se resuelve el sistema utilizando el cierre previamente especificado.
+        # Diccionario con la ecuación de OZE
+        output = Dict("system" => system, "OZE" => sol)
 
-# closure relation for the Ornstein-Zernike equation
-    closure = PercusYevick() // se utiliza la cerradurta de percus Yevick
+        # Imprime la solución en formato JSON
+        output = JSON.json(output)
+        println(output)
 
-
-
-
-
- # solving the system using the Ornstein-Zernike closure
-    sol = @time solve(system, closure)
-La solución del sistema se guarda en formato JSON para su posterior uso o análisis.
-# processing and saving the result
-    data = Dict("system_solution" => sol) // ingesa al diccionario en system_soution
-    json_data = JSON.json(data)
-
-    # printing the solution in JSON format
-    println(json_data)
+    catch 
+        return 500
+    end
 end
 
 main(ARGS)
+```
 
 
+### `entrypoint.sh`
+
+```bash
+#!/bin/bash
+# Directorio de salida
+OUTPUT_DIR="/workspace/particulas1"
+
+# Asegurarse de que el directorio existe
+mkdir -p "$OUTPUT_DIR"
+
+# Ejecutar el script de Julia y guardar la salida en un archivo
+julia OZE2_HS.jl "$PARAM" > "$OUTPUT_DIR/result_$PARAM.dat"
+```
+
+
+### `Dockerfile`
+
+```Dockerfile
+# Usamos la imagen oficial de Julia
+FROM julia:1.10
+
+# Actualizar el sistema e instalar las dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    bash \
+    curl \
+    wget \
+    git \
+    build-essential \
+    libcurl4-openssl-dev \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
+# Crear directorio de trabajo
+WORKDIR /workspace
+
+# Clonar el repositorio del paquete
+RUN git clone https://github.com/IlianPihlajamaa/OrnsteinZernike.jl
+
+# Instalar los paquetes de Julia necesarios
+RUN julia -e 'using Pkg; Pkg.add(PackageSpec(path="/workspace/OrnsteinZernike.jl")); Pkg.instantiate()'
+RUN julia -e 'using Pkg; Pkg.add("JSON")'
+
+# Crear directorio para la salida
+ENV OUTPUT_DIR="/workspace/particulas"
+RUN mkdir -p $OUTPUT_DIR
+
+# Copiar el script que se va a utilizar
+COPY OZE2_HS.jl .
+
+# Copiar el script de shell para ejecutar
+COPY entrypoint.sh .
+
+# Dar permisos de ejecución al script
+RUN chmod +x entrypoint.sh
+
+# Establecer variable de entorno
+ENV PARAM=0.1
+
+# Establecer el punto de entrada usando bash explícitamente
+ENTRYPOINT ["bash", "./entrypoint.sh"]
+```
+
+
+### `docker-compose.yml`
+
+```yaml
+# version: '3.9'
+services:
+  ornstein-zernike:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oz_loc_try
+    environment:
+      - PARAM=${PARAM:-0.1}
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    entrypoint: ["./entrypoint.sh"]
+
+# Para ejecutar en PowerShell (Windows):
+# $env:PARAM="0.3"; docker-compose up --build
+```
+
+
+---
+
+
+## Ecuación Ornstein-Zernike para Esferas Duras
+
+Este proyecto contiene un script en Julia que resuelve la ecuación Ornstein-Zernike usando la teoría de esferas duras. La solución se presenta en formato JSON para su posterior análisis. Además, el proyecto incluye un Dockerfile para crear un contenedor que ejecute el script en un entorno controlado.
+
+### Descripción del código `OZE_HS.jl`
+
+- Se obtiene el valor de la fracción volumétrica `phi` como argumento del usuario.
+- Se establece un sistema de esferas duras (`HardSpheres`) con densidad `ρ = (6/π) * φ` y temperatura `kBT = 1.0`.
+- Se usa el cierre de Percus-Yevick (`PercusYevick`) para resolver la ecuación de Ornstein-Zernike.
+- La solución se imprime en formato JSON.
 
 ### Dockerfile
 
-El Dockerfile crea una imagen Docker que contenga un entorno adecuado para ejecutar el script de Julia, instalar las dependencias necesarias, y ejecutar el código dentro de un contenedor que ayuda a crear una imagen de docker.
+El Dockerfile construye una imagen de Docker con:
 
-El archivo que define el proceso de construcción de la imagen Docker con todas las dependencias necesarias, la instalación de Julia, y la ejecución del script de Julia.
-entrypoint.sh: Script de shell que se utiliza como punto de entrada al contenedor Docker. Este script configura y ejecuta el código Julia.
+- Julia y sus dependencias.
+- El paquete `OrnsteinZernike.jl` desde GitHub.
+- El paquete `JSON.jl`.
 
+Se copian los scripts necesarios (`OZE_HS.jl` y `entrypoint.sh`) y se configura el punto de entrada del contenedor.
 
-Se usa la imagen alpine:latest  como sisterma base ya que es muy pequeña, minimalista y facil de utlizar
+### `entrypoint.sh`
 
+Script de shell que:
 
-FROM alpine:latest
-
-
-Instalación de Dependencias: Se instalan herramientas esenciales como bash, curl, git y otros paquetes necesarios para la instalación de Julia y el funcionamiento del contenedor.
-
-
-RUN apk update && \
-    apk add --no-cache \
-    bash \
-    curl \
-    build-base \
-    libgcc \
-    libstdc++ \
-    git \
-    && rm -rf /var/cache/apk/*
+- Crea un directorio para resultados.
+- Ejecuta el script de Julia con el valor `phi`.
+- Guarda la salida en un archivo con nombre `result_<phi>.dat`.
 
 
-Instalación de Julia: Julia se descarga e instala en el contenedor de la siguiente manera  especificando las instrucciones necesarias para su instalacion.
+### Conclusión
 
+Este proyecto permite resolver la ecuación Ornstein-Zernike de forma reproducible y portátil usando Docker. Puedes ajustar el valor de `phi` y analizar los resultados sin preocuparte por las dependencias del sistema operativo.
 
-
-RUN curl -sSL https://julialang.org/downloads/latest_release.tar.gz | tar -xzC /usr/local
-ENV PATH="/usr/local/julia-*/bin:$PATH"
-
-
-Se clona el repositorio OrnsteinZernike.jl que contiene la implementación de la teoría Ornstein-Zernike.
-
-RUN git clone https://github.com/IlianPihlajamaa/OrnsteinZernike.jl
-
-Utilizamos Repositorio de Julia para la implementación de la ecuación Ornstein-Zernike en el archivo OrnsteinZernike.jl
-
-Instalación de Paquetes en Julia: Se instalan los paquetes de Julia necesarios como OrnsteinZernike.jl y JSON.
-
-
-RUN julia -e 'using Pkg; Pkg.add(PackageSpec(path="/workspace/OrnsteinZernike.jl")); Pkg.instantiate()'
-RUN julia -e 'import Pkg; Pkg.add("JSON")'
-
-Copia de Archivos y Configuración de Permisos: Se copian los scripts de Julia y el script de shell que se utilizarán para ejecutar el programa. Además, se otorgan permisos de ejecución al script de shell.
-
-
-COPY OZE_HS.jl .  // copia el  archivo OZE_HS.jl 
-COPY entrypoint.sh . // copia el acceso al punto de acceso al contenedor docker.
-RUN chmod +x entrypoint.sh //entrega permiso de ejecucion.
-
-
-Configuración del Entorno: Se establece la variable de entorno PARAM que puede ser utilizada dentro del contenedor, y se configura el contenedor para que ejecute el script de shell como punto de entrada.
-
-ENV PARAM=0.01
-ENTRYPOINT ["./entrypoint.sh"] // entrypoint.sh: Un script de shell que se utiliza como punto de entrada del contenedor Docker.
-
-
-Descripción del Script Shell (entrypoint.sh)
-
-El archivo entrypoint.sh contiene las instrucciones necesarias para ejecutar el script Julia dentro del contenedor. Es posible que se deba personalizar este archivo según los detalles específicos del entorno de ejecución.
-
-
- ## Ejecución del Contenedor Docker
-
-Para ejecutar el contenedor Docker y pasar un parámetro al script Julia, puedes usar el siguiente comando:
-
-docker run --rm -e PARAM=0.01 codigo_app .
-
-
-
-
-
---rm: Elimina el contenedor después de que se ejecute.
--e PARAM=0.01: Establece el valor de la variable de entorno PARAM.
-codigo_app: El nombre de la imagen Docker.
-
-
-
- ## Conclusiones:
-
-
-Este proyecto proporciona una forma controlada de ejecutar un script Julia para resolver la ecuación Ornstein-Zernike en un contenedor Docker. Todo el proceso está diseñado para facilitar la ejecución en diferentes entornos sin preocuparse por las dependencias del sistema operativo de acuerdo a lo paramtros de ehjecucion del sistema.
-
+ 
 
 
 
