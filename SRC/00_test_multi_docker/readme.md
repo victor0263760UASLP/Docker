@@ -5,7 +5,7 @@ Este proyecto contiene todos los archivos necesarios para correr simulaciones de
 
 ---
 
-## 📁 Archivos Incluidos
+##  Archivos Incluidos
 
 | Archivo                | Descripción |
 |------------------------|-------------|
