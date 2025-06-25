@@ -76,3 +76,7 @@ Archivos generados:
 - `hnc` o `HypernettedChain`
 
 Este entorno es útil para estudios de estructura de líquidos simples en condiciones controladas mediante simulación teórica.
+
+
+
+
