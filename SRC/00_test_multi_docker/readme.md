@@ -1,5 +1,5 @@
 
-# 📘 Proyecto: Simulación de Líquidos Simples con la Ecuación de Ornstein-Zernike
+#  Proyecto: Simulación de Líquidos Simples con la Ecuación de Ornstein-Zernike
 
 Este proyecto contiene todos los archivos necesarios para correr simulaciones de sistemas de esferas duras utilizando la ecuación de Ornstein-Zernike con el paquete `OrnsteinZernike.jl` en Julia. El entorno está encapsulado dentro de un contenedor Docker, lo que asegura portabilidad y reproducibilidad.
 
@@ -17,7 +17,7 @@ Este proyecto contiene todos los archivos necesarios para correr simulaciones de
 
 ---
 
-## 📜 Script Principal: `OZE5.jl`
+## Script Principal: `OZE5.jl`
 
 Script en Julia que:
 
@@ -34,7 +34,7 @@ julia OZE5.jl 0.35 1.0 "./resultados_local" "./resultados_volumen"
 
 ---
 
-## 🔁 `entrypoint.sh`
+##  `entrypoint.sh`
 
 Script Bash que:
 
@@ -44,7 +44,7 @@ Script Bash que:
 
 ---
 
-## 🐳 `Dockerfile`
+## `Dockerfile`
 
 Construye una imagen basada en `julia:1.11` con:
 
@@ -54,7 +54,7 @@ Construye una imagen basada en `julia:1.11` con:
 
 ---
 
-## 🧩 `docker-compose.yml`
+##  `docker-compose.yml`
 
 Permite ejecutar el contenedor fácilmente:
 
@@ -66,7 +66,7 @@ Usa variables de entorno para ajustar el sistema simulado y el nombre de la carp
 
 ---
 
-## ⚙️ `.env`
+##  `.env`
 
 ```env
 PHI=0.35
@@ -78,7 +78,7 @@ Estas variables controlan la fracción de empaque, la energía térmica y la car
 
 ---
 
-## 📤 Salidas esperadas
+##  Salidas esperadas
 
 - `result_HS_phi_0_35.dat`: Función de correlación radial `g(r)`.
 - `resumen_parametros_phi_0_35.dat`: Parámetros físicos usados.
@@ -87,7 +87,7 @@ Ubicación: tanto en la carpeta local (`/workspace/output`) como en volumen pers
 
 ---
 
-## 🧪 Ejemplo completo (Linux/macOS)
+##  Ejemplo completo (Linux/macOS)
 
 ```bash
 export PHI=0.35
@@ -96,7 +96,7 @@ export FOLDER_NAME=resultados_oz
 docker compose up --build --force-recreate
 ```
 
-## 🧪 Ejemplo completo (Windows PowerShell)
+##  Ejemplo completo (Windows PowerShell)
 
 ```powershell
 $env:PHI="0.35"; $env:KBT="1.0"; $env:FOLDER_NAME="resultados_oz"
@@ -105,7 +105,7 @@ docker compose up --build --force-recreate
 
 ---
 
-## ✅ Limpieza
+##  Limpieza
 
 ```bash
 docker compose down -v
@@ -113,7 +113,7 @@ docker compose down -v
 
 ---
 
-## 📌 Autoría y Créditos
+##  Autoría y Créditos
 
 Este proyecto utiliza el paquete [`OrnsteinZernike.jl`](https://github.com/IlianPihlajamaa/OrnsteinZernike.jl) desarrollado por Ilian Pihlajamaa.
 
@@ -122,7 +122,7 @@ Este proyecto utiliza el paquete [`OrnsteinZernike.jl`](https://github.com/Ilian
 
 ---
 
-## 📦 Código Fuente de los Archivos
+##  Código Fuente de los Archivos
 
 ### `OZE5.jl`
 
