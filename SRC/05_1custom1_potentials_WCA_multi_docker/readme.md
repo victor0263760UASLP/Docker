@@ -5,7 +5,7 @@ Este proyecto permite simular líquidos simples en 2D usando la ecuación de Orn
 
 ---
 
-## 📂 Archivos principales
+##  Archivos principales
 
 - `WCA.jl`: Script en Julia que realiza la simulación.
 - `entrypoint.sh`: Script Bash que prepara la ejecución.
