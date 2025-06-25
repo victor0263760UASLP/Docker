@@ -73,7 +73,7 @@ set DENSITIES=0.1,0.2,0.3,0.4,0.5,0.6&& set DIMENSION=2&& set KBT=1.0&& set FOLD
 
 ---
 
-##  Ejemplos de ejecución avanzados
+##  Ejemplos de ejecución realizadas
 
 ```bash
 export DENSITIES=0.11,0.21,0.31,0.41,0.51,0.61,0.7
