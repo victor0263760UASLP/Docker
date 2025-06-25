@@ -8,7 +8,7 @@ Este proyecto permite ejecutar simulaciones para líquidos simples con el paquet
 ##  Archivos principales
 
 1. **`density.jl`**  
-   Script en Julia que realiza la simulación. Ver código completo en la sección "Anexo: Script Julia".
+   Script en Julia que realiza la simulación. 
 
 2. **`entrypoint.sh`**  
    Script Bash que valida variables y ejecuta el script de Julia.
