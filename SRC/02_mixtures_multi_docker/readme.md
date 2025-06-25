@@ -9,7 +9,7 @@ Este repositorio permite ejecutar simulaciones de una mezcla binaria de esferas 
 ### 1. `mixtures.jl`
 Script principal en Julia que:
 - Define un sistema de partículas duras (diámetros `D1`, `D2`).
-- Usa el cierre de Percus-Yevick.
+- Usa la cerradura  de Percus-Yevick.
 - Resuelve la ecuación OZ para obtener funciones de correlación radial `g_ij(r)`.
 - Guarda los resultados en carpetas locales y de volumen.
 
