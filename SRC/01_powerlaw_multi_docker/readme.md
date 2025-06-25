@@ -1,6 +1,6 @@
 # Resolución de la Ecuación de Ornstein-Zernike con Potencial Power-Law
 
-Este proyecto usa Julia dentro de un contenedor Docker para resolver la ecuación de Ornstein-Zernike con un potencial tipo power-law utilizando la cerradura de Hypernetted Chain (HNC). El objetivo es generar datos `g(r)` en archivos `.dat` y guardar los parámetros físicos utilizados para cada corrida.
+Este proyecto usa Julia dentro de un contenedor Docker para resolver la ecuación de Ornstein-Zernike con un potencial tipo power-law utilizando la cerradura de Hypernetted Chain (HNC). El objetivo es generar datos `g(r)` en archivos `.dat` y guardar los parámetros físicos utilizados para cada compilación.
 
 ---
 
