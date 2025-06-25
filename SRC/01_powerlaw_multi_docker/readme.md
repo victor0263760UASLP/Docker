@@ -4,7 +4,7 @@ Este proyecto usa Julia dentro de un contenedor Docker para resolver la ecuació
 
 ---
 
-## 🧩 Archivos incluidos
+##  Archivos incluidos
 
 - `power_dockerduo.jl`: script principal de Julia que realiza el cálculo físico.
 - `entrypoint.sh`: script Bash que ejecuta Julia con variables del entorno.
@@ -14,7 +14,7 @@ Este proyecto usa Julia dentro de un contenedor Docker para resolver la ecuació
 
 ---
 
-## ▶️ Cómo ejecutar
+##  Cómo ejecutar
 
 ### Usando Docker Compose
 
@@ -39,7 +39,7 @@ docker compose up --build --force-recreate
 
 ---
 
-## 🧪 Código fuente
+## Código fuente
 
 ### `power_dockerduo.jl`
 
@@ -207,7 +207,7 @@ FOLDER_NAME=resultados_powerlaw
 
 ---
 
-## 📂 Salida esperada
+##  Salida esperada
 
 - Archivos `.dat` en `output_local/<FOLDER_NAME>` y en el volumen Docker `volumen_lanimfe`.
 - Incluyen:
@@ -216,13 +216,13 @@ FOLDER_NAME=resultados_powerlaw
 
 ---
 
-## ✅ Requisitos
+##  Requisitos
 
 - Docker y Docker Compose instalados.
 - No se necesita tener Julia localmente.
 
 ---
 
-## 📄 Licencia
+##  Licencia
 
-Este proyecto es de uso libre para propósitos educativos e investigación.
+Este proyecto esta restringuido solo con consentimiento del autor  Rivera Juárez Victor Guadalupe o asesores Ricardo Peredo Ortiz y Magdaleno Medina Noyola para propósitos educativos e investigación.
