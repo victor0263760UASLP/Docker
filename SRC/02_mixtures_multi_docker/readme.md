@@ -211,7 +211,7 @@ D1=0.5 D2=1.0 RHO_TOTAL=1.6 KBT=1.0 FOLDER_NAME=resultados_mezclas docker compos
 
 ---
 
-## ⚡ Instrucciones de uso
+##  Instrucciones de uso
 
 1. Asegúrate de tener Docker y Docker Compose instalados.
 2. Coloca todos los archivos en el mismo directorio.
