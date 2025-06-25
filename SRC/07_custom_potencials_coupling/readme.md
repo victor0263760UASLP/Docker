@@ -1,4 +1,4 @@
-# 🧪 Simulación OZ + MCT con Potencial Yukawa en Julia
+#  Simulación OZ + MCT con Potencial Yukawa en Julia
 
 Este proyecto permite simular líquidos simples interactuando mediante el potencial de Yukawa usando:
 
@@ -9,10 +9,10 @@ Toda la simulación está automatizada y contenida mediante Docker y Docker Comp
 
 ---
 
-## 📁 Estructura del Proyecto
+##  Estructura del Proyecto
 
 ```bash
-📦 proyecto/
+ proyecto/
 ├── mct.jl               # Script principal de simulación OZ + MCT
 ├── entrypoint.sh        # Script Bash que valida variables y ejecuta el código
 ├── Dockerfile           # Imagen base Julia + dependencias
@@ -42,7 +42,7 @@ FOLDER_NAME=mct_custom
 
 ---
 
-## 🚀 Cómo ejecutar la simulación
+##  Cómo ejecutar la simulación
 
 ### Opción 1: Usar el archivo `.env`
 
@@ -54,7 +54,7 @@ docker compose up --build --force-recreate
 
 ### Opción 2: Definir variables manualmente
 
-#### 🔵 En Windows (PowerShell)
+####  En Windows (PowerShell)
 
 ```powershell
 $env:SIGMA="144.0"
@@ -69,7 +69,7 @@ $env:FOLDER_NAME="mct_custom"
 docker compose up --build --force-recreate
 ```
 
-#### 🍏 En macOS / Linux
+####  En macOS / Linux
 
 ```bash
 export SIGMA=144.0
@@ -86,7 +86,7 @@ docker compose up --build --force-recreate
 
 ---
 
-## 📤 Salidas generadas
+##  Salidas generadas
 
 Ubicación:
 
@@ -102,7 +102,7 @@ Archivos:
 
 ---
 
-## 🔧 Tecnologías usadas
+##  Tecnologías usadas
 
 - **Lenguaje:** Julia 1.11
 - **Paquetes Julia:**
@@ -113,7 +113,7 @@ Archivos:
 
 ---
 
-## 📜 Descripción de Scripts
+##  Descripción de Scripts
 
 ### `mct.jl`
 
@@ -128,7 +128,7 @@ Archivos:
 
 ---
 
-## 🧼 Limpieza de contenedores y volúmenes
+##  Limpieza de contenedores y volúmenes
 
 ```bash
 docker compose down --volumes
@@ -137,14 +137,14 @@ docker system prune -a --volumes -f
 
 ---
 
-## ✍️ Autor
+##  Autor
 
 Víctor Guadalupe Rivera Juárez  
 📅 Junio 2025
 
 ---
 
-## 🧠 Notas Finales
+##  Notas Finales
 
 - Puedes cambiar fácilmente las condiciones físicas editando el `.env`.
 - Usa `Ctrl+C` para detener la ejecución al final de una compilación.
