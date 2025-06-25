@@ -33,7 +33,7 @@ FOLDER_NAME=resultados_mct
 
 ##  Cómo ejecutar la simulación
 
-### Opción 1: usando `.env` (recomendado)
+### Opción 1: usando `.env` 
 
 ```bash
 docker compose up --build --force-recreate
@@ -205,14 +205,81 @@ main(ARGS...)
 
 ```bash
 #!/bin/bash
-# Script de entrada
+set -euo pipefail
+
+# Verificar variables de entorno
+if [ -z "${PHI:-}" ]  || [ -z "${FOLDER_NAME:-}" ]; then
+  echo "ERROR: Faltan variables de entorno requeridas."
+  echo "Define PHI, FOLDER_NAME en el archivo .env o al ejecutar el contenedor."
+  exit 1
+fi
+
+
+echo "PHI: $PHI"
+echo "FOLDER_NAME: $FOLDER_NAME"
+
+
+LOCAL_PATH="/workspace/$FOLDER_NAME"
+VOLUME_PATH="/data_output/$FOLDER_NAME"
+
+
+mkdir -p "$LOCAL_PATH"
+mkdir -p "$VOLUME_PATH"
+
+
+echo "Local Path: $LOCAL_PATH"
+echo "Volume Path: $VOLUME_PATH"
+
+
+# Verificar que Julia está instalada.
+command -v julia >/dev/null 2>&1 || { echo >&2 "Julia no está instalada."; exit 1; }
+
+
+julia scgle.jl "$PHI"  "$LOCAL_PATH" "$VOLUME_PATH"
+
 ```
 </details>
 
 <details><summary><code>Dockerfile</code></summary>
 
 ```dockerfile
-# Dockerfile base
+FROM julia:1.11
+
+
+RUN apt-get update && apt-get install -y \
+    bash curl wget git build-essential libcurl4-openssl-dev ca-certificates dos2unix \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+
+# Clonar el repositorio de Julia
+RUN git clone https://github.com/IlianPihlajamaa/OrnsteinZernike.jl
+RUN git clone https://github.com/IlianPihlajamaa/ModeCouplingTheory.jl
+
+# Instalar paquetes de Julia necesarios
+RUN julia -e 'using Pkg; Pkg.add(PackageSpec(path="OrnsteinZernike.jl")); Pkg.instantiate()'
+RUN julia -e 'using Pkg; Pkg.add(PackageSpec(path="ModeCouplingTheory.jl")); Pkg.instantiate()'
+RUN julia -e 'using Pkg; Pkg.add("JSON"); Pkg.add("DelimitedFiles")'
+RUN julia -e 'using Pkg; Pkg.add(["Plots"])'
+
+COPY scgle.jl /workspace/scgle.jl
+COPY entrypoint.sh /workspace/entrypoint.sh
+
+
+RUN dos2unix /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
+
+# entrypoint
+ENTRYPOINT ["bash", "/workspace/entrypoint.sh"]
+
+# Corregir formato fin de línea y dar permiso de ejecución
+#RUN sed -i 's/\r//' /workspace/entrypoint.sh && chmod +x /workspace/entrypoint.sh
+
+
+#windows$env:PHI="0.23"; $env:KBT="2.0"; $env:FOLDER_NAME="nuevop"; docker compose up --build --force-recreate
+#macPHI=0.23 KBT=2.0 FOLDER_NAME=martes docker compose up --build --force-recreate
+#ubuntu export PHI=0.23; export KBT=2.0; export FOLDER_NAME=nuevop; docker compose up --build --force-recreate
+#julia scgle.jl 0.58 ./output ./shared_volume
+
 ```
 </details>
 
