@@ -203,7 +203,7 @@ julia 3NG_Solver.jl "$PHI" "$KBT" "$M" "$N_STAGES" "$LOCAL_PATH" "$VOLUME_PATH"
 
 2. Coloca todos los archivos juntos en un directorio.
 
-3. Opcional: crea carpeta local para resultados:
+3. Opcional: creamos una carpeta local para resultados para guardar datos .dat con este comando, se encuentra automátizado y listo para usar:
    ```bash
    mkdir -p output_local
    ```
