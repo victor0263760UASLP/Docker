@@ -1,10 +1,10 @@
-# 🧪 Simulación de Dinámica con SCGLE en Julia usando Docker
+#  Simulación de Dinámica con SCGLE en Julia usando Docker
 
 Este proyecto permite simular la dinámica de partículas en un líquido usando la **teoría SCGLE** (Self-Consistent Generalized Langevin Equation), implementada en Julia y contenida dentro de un entorno Docker.
 
 ---
 
-## 📁 Estructura de Archivos
+##  Estructura de Archivos
 
 - `scgle.jl`: Código principal en Julia que ejecuta la simulación de Fs(k, t).
 - `entrypoint.sh`: Script de entrada que valida las variables de entorno y ejecuta `scgle.jl`.
@@ -14,7 +14,7 @@ Este proyecto permite simular la dinámica de partículas en un líquido usando 
 
 ---
 
-## ⚙️ Variables de Entorno (.env)
+##  Variables de Entorno (.env)
 
 ```env
 # Parámetros para la simulación SCGLE
@@ -31,7 +31,7 @@ FOLDER_NAME=resultados_mct
 
 ---
 
-## ▶️ Cómo ejecutar la simulación
+##  Cómo ejecutar la simulación
 
 ### Opción 1: usando `.env` (recomendado)
 
@@ -53,7 +53,7 @@ $env:PHI="0.35"; $env:FOLDER_NAME="resultados_mct"; docker compose up --build --
 
 ---
 
-## 📤 Resultados
+##  Resultados
 
 Los resultados se guardan en:
 
@@ -67,7 +67,7 @@ Archivos generados:
 
 ---
 
-## 🧰 Contenido de Código Fuente
+##  Contenido de Código Fuente
 
 <details><summary><code>scgle.jl</code></summary>
 
@@ -120,5 +120,5 @@ volumes:
 
 ---
 
-📝 **Autor:** Víctor Guadalupe Rivera Juárez  
-📅 **Fecha:** Junio 2025
+ **Autor:** Víctor Guadalupe Rivera Juárez  
+**Fecha:** Junio 2025
