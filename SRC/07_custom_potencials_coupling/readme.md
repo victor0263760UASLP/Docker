@@ -147,4 +147,4 @@ Víctor Guadalupe Rivera Juárez
 ## 🧠 Notas Finales
 
 - Puedes cambiar fácilmente las condiciones físicas editando el `.env`.
-- Usa `Ctrl+C` para detener la ejecución al final de una corrida.
+- Usa `Ctrl+C` para detener la ejecución al final de una compilación.
