@@ -24,7 +24,7 @@ Toda la simulación está automatizada y contenida mediante Docker y Docker Comp
 
 ---
 
-## ⚙️ Variables del archivo `.env`
+## Variables del archivo `.env`
 
 Ejemplo de configuración usada:
 
@@ -140,7 +140,7 @@ docker system prune -a --volumes -f
 ##  Autor
 
 Víctor Guadalupe Rivera Juárez  
-📅 Junio 2025
+ Junio 2025
 
 ---
 
