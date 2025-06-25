@@ -181,10 +181,10 @@ command -v julia >/dev/null 2>&1 || { echo >&2 "Julia no está instalada."; exit
 julia density.jl "$DENSITIES" "$DIMENSION" "$KBT" "$LOCAL_PATH" "$VOLUME_PATH"
 ```
 
----
+
 
 ## Script Julia (`density.jl`)
-
+```Julia
 using DelimitedFiles
 using OrnsteinZernike
 
@@ -266,9 +266,10 @@ function main(args...)
 end
 
 main(ARGS...)
-
+```
+```bash
 #export DENSITIES=0.11,0.21,0.31,0.41,0.51,0.61,0.7;export DIMENSION=2; export KBT=1.0;  export N_STAGES=10; export FOLDER_NAME=nuevo1; docker compose up --build --force-
 #$env:DENSITIES="0.11,0.21,0.31,0.41,0.51,0.61,0.7"; $env:DIMENSION="2"; $env:KBT="1.0"; $env:N_STAGES="10"; $env:FOLDER_NAME="dimensions"; docker compose up --build --force-recreate
 #DENSITIES="0.11,0.21,0.31,0.41,0.51,0.61,0.7"; DIMENSION="2"; KBT="1.0"; N_STAGES="10"; FOLDER_NAME="dimensions"; docker compose up --build --force-recreate
 #mac_1DENSITIES="0.11,0.21,0.31,0.41,0.51,0.61,0.7" \DIMENSION="2" \KBT="1.0" \N_STAGES="10" \FOLDER_NAME="dimensions" \docker compose up --build --force-recreate
-
+```
