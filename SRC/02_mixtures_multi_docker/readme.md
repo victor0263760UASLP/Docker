@@ -1,6 +1,6 @@
 # Simulación de Mezclas Binarias de Esferas Duras usando Docker y Julia
 
-Este repositorio permite ejecutar simulaciones de una mezcla binaria de esferas duras en 3D utilizando la ecuación de Ornstein-Zernike con el cierre de Percus-Yevick, mediante un contenedor Docker que automatiza todo el proceso.
+Este repositorio permite ejecutar simulaciones de una mezcla binaria de esferas duras en 3D utilizando la ecuación de Ornstein-Zernike con la cerradura de Percus-Yevick, mediante un contenedor Docker que automatiza todo el proceso.
 
 ---
 
