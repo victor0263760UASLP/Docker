@@ -14,10 +14,57 @@ Estos archivos se encuentran disponibles para realizar las modificaciones pertin
 Todos los codigos del repositorio se encuentran bajo protección de derechos de autor y solo se puede hacer uso bajo la administración del autor de la tesis o de los asesores el Dr.Ricardo Peredo Ortiz y el Dr.Magdaleno Medina Noyola.
 
 Dentro de las consideraciones que te pueden ayudar son : cuando son muchas iteraciones el sistema puede encontrar más rapido convergencias, en el caso de la teoria MCT,algunos parametros son complicados para converger, por lo que tienes que detenerte un poco para ver o imaginarte bajo que parametros puede existir convergencia y en algunos casos puedes hacer algunas operaciones básicas en tu libreta para llevarte un poco de menor tiempo realizando las  combinaciones donde exista convergencia.
-Agregar permisos...................................................................................................................................... y gittatributes...
+En algunas veces es necesario agregar permisos y utilizar le comando  dos2unix ,también puedes utilizar el comando de .gittattributes, a veces es necesario, puede que nuenca se ha necesario, si cambias manualmente en Visual Studio Code.
 
+##  Uso del archivo `.gitattributes` para control de EOL y binarios
+
+Para asegurar que los saltos de línea (EOL) y los archivos binarios se manejen correctamente en Git, sigue estos pasos:
+
+### 1. Crear el archivo `.gitattributes`
+
+Guarda el siguiente contenido como `.gitattributes` en la raíz de tu repositorio:
+
+```gitattributes
+# Archivos de texto: usar saltos de línea LF
+*.sh         text eol=lf
+*.jl         text eol=lf
+Dockerfile   text eol=lf
+*.yml        text eol=lf
+.env         text eol=lf
+*.txt        text eol=lf
+*.md         text eol=lf
+
+# Archivos binarios: no tocar EOL
+*.png        binary
+*.jpg        binary
+*.jpeg       binary
+*.gif        binary
+```
+
+### 2. Añadir el archivo a Git
+
+Ejecuta en tu terminal Git:
+
+```bash
+git add .gitattributes
+git commit -m "Añadir .gitattributes para control de EOL y binarios"
+```
+
+### 3. Renormalizar todos los archivos del repositorio
+
+Esto hará que Git reanalice y actualice los archivos según las reglas de `.gitattributes`:
+
+```bash
+git add --renormalize .
+git commit -m "Normalizar archivos con nueva configuración de EOL"
+```
+
+>  Nota: Este paso puede generar muchos cambios si los archivos tenían saltos de línea inconsistentes.
+
+---
+
+Con esto, tu repositorio quedará configurado para manejar correctamente los archivos de texto y binarios, evitando conflictos comunes entre sistemas operativos.
 Sin más por el momento adelante te va ayudar mucho, te deseo suerte, todo va estar documentado, recuerda que en la tesis encontraras una descripción de docker y comandos básicos, pero si  tienes alguna duda no dudes en preguntarnos.
 
 Nos vemos hasta luego gracias,suerte en tu camino.
 
-O espera se me olvidaba decirte  algo git hub no me permite subir archivos. env asi que a los archivos .env los subi como archivos txt.env, solo debes cambiarlos con .env, ahora si nos vemos.
