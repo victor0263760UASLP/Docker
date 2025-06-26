@@ -239,7 +239,7 @@ function main(args...)
         savefig(joinpath(local_folder, "Fskt_" * base * ".svg"))
         savefig(joinpath(volume_folder, "Fskt_" * base * ".svg"))
 
-        println("✓ Datos guardados para χ = $χ\n")
+        println(" Datos guardados para χ = $χ\n")
     end
 end
 
