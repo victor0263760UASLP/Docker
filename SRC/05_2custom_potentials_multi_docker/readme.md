@@ -74,7 +74,7 @@ docker compose up --build --force-recreate
 
 ---
 
-## 📄 Ejemplo de archivo `.env`
+##  Ejemplo de archivo `.env`
 
 Puedes crear un archivo llamado `.env` en la raíz del proyecto con el siguiente contenido:
 
