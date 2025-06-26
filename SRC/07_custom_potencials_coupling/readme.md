@@ -380,8 +380,7 @@ volumes:
 
 ---
 
- **Autor:** Víctor Guadalupe Rivera Juárez  
-**Fecha:** Junio 2025
+
 
 ##  Autor
 
