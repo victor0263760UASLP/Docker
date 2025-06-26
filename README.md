@@ -63,7 +63,7 @@ git commit -m "Normalizar archivos con nueva configuración de EOL"
 
 ---
 
-Con esto, tu repositorio quedará configurado para manejar correctamente los archivos de texto y binarios, evitando conflictos comunes entre sistemas operativos.
+Con esto, tus codigos quedará configurado para manejar correctamente los archivos de texto y binarios, evitando conflictos comunes entre sistemas operativos.
 Sin más por el momento adelante te va ayudar mucho, te deseo suerte, todo va estar documentado, recuerda que en la tesis encontraras una descripción de docker y comandos básicos, pero si  tienes alguna duda no dudes en preguntarnos.
 
 Nos vemos hasta luego gracias,suerte en tu camino.
