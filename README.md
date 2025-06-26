@@ -22,7 +22,7 @@ Para asegurar que los saltos de línea (EOL) y los archivos binarios se manejen 
 
 ### 1. Crear el archivo `.gitattributes`
 
-Guarda el siguiente contenido como `.gitattributes` en la raíz de tu repositorio:
+Guarda el siguiente contenido como `.gitattributes` en la raíz de tus archivos:
 
 ```gitattributes
 # Archivos de texto: usar saltos de línea LF
