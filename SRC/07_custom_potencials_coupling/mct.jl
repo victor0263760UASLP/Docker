@@ -83,7 +83,7 @@ function main(args...)
         sol_mct = MCT.solve(equation, solver)
 
         # --- Guardar y graficar Fs(k,t)
-        idx = 25  # índice representativo
+        idx = 25  
         t = MCT.get_t(sol_mct)[1:10:end]
         Fskt = MCT.get_F(sol_mct, 1:10:length(t)*10, idx) ./ S_all[idx]
         datos = [log10.(t) Fskt]
